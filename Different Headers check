@@ -1,0 +1,21 @@
+# I am checking to see if the headers between these two files are the same or different. 
+
+import pandas as pd
+
+# Read the CSV Files
+
+df1 = pd.read_csv('file1.csv')
+df2 = pd.read_csv('file4-names.csv')
+
+# Print out the number of rows in the data frames
+
+print(f'Number of rows in file1.csv: {len(df1)}')
+print(f'Number of rows in file4.csv: {len(df2)}')
+
+# Lets see if the Columns are the same
+
+if list(df1.columns) == list(df2.columns):
+    print('The headers are the same.')
+else:
+    print('The headers are different.')
+
