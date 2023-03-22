@@ -1,0 +1,23 @@
+The python script will load two csv files,  and then merge them based on a common header,  Then I will drop all the headers I do not need.  After that id the rows that are missing and then print out the missing rows. 
+
+import pandas as pd
+
+# Load both CSV files
+df1 = pd.read_csv('file1.csv')
+df2 = pd.read_csv('file4-names.csv')
+
+# Merge the dataframes on the common header
+merged = pd.merge(df1, df2, on='User ID')
+
+print(merged)
+
+# Drop the columns that are not required
+merged = merged.drop(['Bad', 'Good', 'Dude', 'Man'], axis=1)
+
+print(merged)
+
+# Identify the rows that are missing from the merged dataframe
+missing_rows = df1[~df1['User ID'].isin(merged['User ID'])]
+
+print('The missing rows are as follows')
+print(missing_rows)
