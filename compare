@@ -1,0 +1,22 @@
+# This is to compare two csv files,  it will tell me if the headers are the same or if they are different.  It will also tell me if they are equal or different. 
+
+import pandas as pd
+
+# read in the two CSV files
+df1 = pd.read_csv('file1.csv')
+df2 = pd.read_csv('file2.csv')
+
+# print out the number of rows in each data frame
+print(f'Number of rows in file1.csv: {len(df1)}')
+print(f'Number of rows in file2.csv: {len(df2)}')
+
+# find the rows that are different between the two data frames
+diff = df1[df1.ne(df2)].dropna(how='all').fillna('')
+
+# print out the rows that are different
+if len(diff) > 0:
+    print('The following rows are different between the two data frames:')
+    print(diff)
+    diff.to_csv('diff.csv', index=False)
+else:
+    print('The two data fram
